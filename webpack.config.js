@@ -11,7 +11,8 @@ module.exports = {
   entry: './src/app.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'vizceral.[hash].bundle.js'
+    filename: 'vizceral.[hash].bundle.js',
+    publicPath: '/Vizceral/'
   },
   resolve: {
     alias: {
@@ -27,15 +28,20 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
-      { test: /\.woff2?$/, use: 'url-loader?limit=10000&mimetype=application/font-woff' },
-      { test: /\.otf$/, use: 'file-loader' },
-      { test: /\.ttf$/, use: 'file-loader' },
-      { test: /\.eot$/, use: 'file-loader' },
-      { test: /\.svg$/, use: 'file-loader' },
+      {
+        test: /\.(woff2?|eot|ttf|otf|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: '', // emit directly to dist/
+          publicPath: '/Vizceral/' // ensures fonts resolve correctly under virtual dir
+        }
+      },
       { test: /\.html$/, use: 'html-loader' },
-      { test: /\.css$/, use: [{ loader: 'style-loader' }, { loader: 'css-loader' }] }
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] }
     ]
-  },
+  }
+  ,
   plugins: [
     new webpack.ProvidePlugin({
       // Automtically detect jQuery and $ as free var in modules
