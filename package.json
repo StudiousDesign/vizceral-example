@@ -3,18 +3,17 @@
   "version": "4.3.0",
   "description": "Vizceral example app",
   "author": "Justin Reynolds <jreynolds@netflix.com>",
-"scripts": {
-  "clean": "rimraf dist && mkdirp dist",
-  "lint": "eslint src --ext .js --ext .jsx --fix",
-  "copy:fonts": "cpx \"./node_modules/source-sans-pro/**/*\" ./dist/fonts",
-  "copy:json": "cpx \"./src/*.json\" ./dist",
-  "dev-server": "webpack-dev-server --host=0.0.0.0 --content-base dist/ --history-api-fallback --color",
-  "dev": "npm-run-all clean --parallel copy:* dev-server",
-  "build": "npm-run-all clean copy:* build:webpack",
-  "build:webpack": "webpack --mode production --config webpack.config.js",
-  "validate": "npm ls"
-}
-,
+  "scripts": {
+    "clean": "rimraf dist && mkdirp dist",
+    "lint": "eslint src --ext .js --ext .jsx --fix",
+    "copy:fonts": "cpx \"./node_modules/source-sans-pro/**/*\" ./dist/fonts",
+    "copy:json": "cpx \"./src/*.json\" ./dist",
+    "dev-server": "webpack-dev-server --host=0.0.0.0 --content-base dist/ --history-api-fallback --color",
+    "dev": "npm-run-all clean --parallel copy:* dev-server",
+    "build": "npm-run-all clean copy:* build:webpack",
+    "build:webpack": "webpack --mode production --config webpack.config.js",
+    "validate": "npm ls"
+  },
   "engines": {
     "node": "~4.4.0"
   },
@@ -38,7 +37,7 @@
     "socket.io-client": "^1.5.1",
     "source-sans-pro": "^2.0.10",
     "superagent": "^3.0.0",
-    "vizceral-react": "^4.8.0",
+    "vizceral-react": "file:../vizceral-react",
     "webfontloader": "^1.6.26"
   },
   "devDependencies": {
